@@ -1,0 +1,13 @@
+.buttons {
+	padding-block: 1rem;
+	padding-inline: 1.8rem;
+	border-radius: 7px;
+	border: none;
+	color: aliceblue;
+	background-color: rgb(77, 77, 230);
+	font-size: 17px;
+	&:hover {
+		transition: all 0.4s ease;
+		background-color: rgb(34, 34, 202);
+	}
+}

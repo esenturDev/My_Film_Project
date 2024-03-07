@@ -1,0 +1,15 @@
+.inputs {
+	padding-right: 5rem;
+	padding-left: 11px;
+	padding-block: 0.5rem;
+	border-radius: 8px;
+	font-size: 13px;
+	// border: none;
+	background-color: aliceblue;
+	color: black;
+	&:hover {
+		transition: all 0.2s ease;
+		background-color: rgba(199, 219, 239, 0.478);
+		border: 2px solid blue;
+	}
+}
