@@ -24,7 +24,13 @@ const login = index.injectEndpoints({
 			}),
 			invalidatesTags: ["loginResults"],
 		}),
+    deleteRegistr: builder.mutation<LoginAndRegistr.DeleteLoginAndRegistrResponse, LoginAndRegistr.DeleteLoginAndRegistrRequest>({
+      query: (id) => ({
+        url: id,
+				method: "DELETE",
+      })
+    })
 	}),
 });
 
-export const { useGetRegistrQuery, usePostRegistrMutation } = login;
+export const { useGetRegistrQuery, usePostRegistrMutation, useDeleteRegistrMutation } = login;

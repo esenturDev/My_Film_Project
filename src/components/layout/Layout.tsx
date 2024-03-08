@@ -4,7 +4,10 @@ import Login from "../pages/Login";
 import Registr from "../pages/Registr";
 import { Header } from "./header/Header";
 import { Home } from "../Home/Home";
-import { HomePages } from "../pages/HomePages";
+import { HomePages } from "../pages/HomePages/HomePages";
+import { IdCardsResult } from "../pages/IdCardsResult";
+import InputValueCards from "../pages/InputValueCards";
+import { Error } from "../pages/Error";
 
 const Layout = () => {
 	const { pathname } = useLocation();
@@ -28,6 +31,9 @@ const Layout = () => {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/home" element={<HomePages />} />
+					<Route path="/home/:id" element={<IdCardsResult />} />
+					<Route path="/home/:inputValue" element={<InputValueCards />} />
+					<Route path="*" element={<Error />} />
 				</Routes>
 			</main>
 		</div>

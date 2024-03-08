@@ -20,4 +20,17 @@ export namespace LoginAndRegistr {
     password: string;
     img?: string;
   }[];
+
+  type DeleteLoginAndRegistrRequest = {
+    _id?: number;
+    login: string;
+    password: string;
+    img?: string;
+  };
+  type DeleteLoginAndRegistrResponse = {
+    _id?: number;
+    login: string;
+    password: string;
+    img?: string;
+  }[];
 }
