@@ -13,14 +13,22 @@ const Registr = () => {
 		const newData = {
 			login: userEmail,
 			password: userPassword,
-      img: userPhoto,
+			img: userPhoto,
 		};
-		if (userEmail.trim() === "" && userPassword.trim() === "" && userPhoto.trim() === "") {
+		if (
+			userEmail.trim() === "" &&
+			userPassword.trim() === "" &&
+			userPhoto.trim() === ""
+		) {
 			alert("Бир нерсе жазыныз input ка!!!");
-      return;
+			return;
 		} else {
-			await postRegistr(newData);
-      navigate('/login');
+			try {
+				await postRegistr(newData);
+				navigate("/login");
+			} catch (error) {
+				console.log(error);
+			}
 		}
 	};
 	return (

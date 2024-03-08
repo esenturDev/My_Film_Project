@@ -1,13 +1,31 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { Input } from "../Ul/input/Input";
 import scss from "./Login.module.scss";
 import { useNavigate } from "react-router";
+import { useGetRegistrQuery } from "../../reducer/api/crud/login";
 // import Button from "../Ul/button/Button";
 
 const Login = () => {
 	const [userEmail, setUserEmail] = useState<string>("");
 	const [userPassword, setUserPassword] = useState<string>("");
 	const navigate = useNavigate();
+	const { data, isLoading } = useGetRegistrQuery();
+	const getRegistrUsers = async () => {
+		try {
+			const registrUsers = data?.find(
+				(item) => item.login === userEmail && item.password === userPassword
+			);
+			if (registrUsers) {
+				localStorage.setItem("isUsers", JSON.stringify(registrUsers._id));
+				navigate("/home");
+			} else {
+				alert("Email или password Туура эмес!!!");
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 	return (
 		<div className={scss.loginPages}>
 			<div className="container">
@@ -38,7 +56,9 @@ const Login = () => {
 									placeholder="Password User..."
 								/>
 							</div>
-							<button className={scss.button1}>Login</button>
+							<button onClick={getRegistrUsers} className={scss.button1}>
+								Login
+							</button>
 							<button
 								className={scss.button2}
 								onClick={() => navigate("/registr")}>
