@@ -4,12 +4,18 @@ import {
 	useDeleteRegistrMutation,
 	useGetRegistrQuery,
 } from "../../../reducer/api/crud/login";
-import { useState } from "react";
+import { FC, useState } from "react";
+import { useNavigate } from "react-router";
 // import { Input } from "../../Ul/input/Input";
 
-export const Header = () => {
+export const Header: FC<{
+	inputValue: string;
+	setInputValue: (value: string) => void;
+}> = ({ inputValue, setInputValue }) => {
 	const { data } = useGetRegistrQuery();
-	const [inputValue, setInputValue] = useState<string>("");
+	const navigate = useNavigate();
+	// const [inputValue, setInputValue] = useState<string>("");
+
 	const [isOpenInput, setIsOpenInput] = useState<boolean>(false);
 	const [deleteRegistr] = useDeleteRegistrMutation();
 	const [isOpenProfile, setIsOpenProfile] = useState<boolean>(false);
@@ -17,6 +23,15 @@ export const Header = () => {
 		localStorage.removeItem("isUsers");
 		await deleteRegistr(id);
 	}
+	const handleHomePages = () => {
+		navigate("/home");
+	};
+	const handleKine = () => {
+		navigate("/home/kino");
+	};
+	const handleSERIES = () => {
+		navigate("/home/SERIES");
+	};
 	return (
 		<header className={scss.header}>
 			<div className="container">
@@ -25,22 +40,25 @@ export const Header = () => {
 						<img src="https://etnomedia.kg/assets/images/logo.svg" alt="logo" />
 						<nav>
 							<ul>
-								<li>ВСЕ!</li>
-								<li>ФИЛЬМЫ</li>
-								<li>СЕРИАЛЫ</li>
-								<li>ТАМАШОУ</li>
-								<li>МУЛЬТИКИ</li>
+								<li onClick={handleHomePages}>ВСЕ!</li>
+								<li onClick={handleKine}>ФИЛЬМЫ</li>
+								<li onClick={handleSERIES}>СЕРИАЛЫ</li>
+								<li onClick={() => navigate("/home/funny")}>ТАМАШОУ</li>
+								<li onClick={() => navigate("/home/CARTOONS")}>МУЛЬТИКИ</li>
 							</ul>
 						</nav>
 					</div>
 					<div className={scss.headerDiv2}>
 						{isOpenInput && (
-							<input
-								type="text"
-								value={inputValue}
-								onChange={(e) => setInputValue(e.target.value)}
-								placeholder="Поиск..."
-							/>
+							<>
+								<input
+									type="text"
+									value={inputValue}
+									onChange={(e) => setInputValue(e.target.value)}
+									placeholder="Поиск..."
+								/>
+								<button onClick={() => navigate('/home/inputValueResult')}>Add</button>
+							</>
 						)}
 						<>
 							<img
@@ -61,7 +79,10 @@ export const Header = () => {
 								{isOpenProfile && (
 									<>
 										<div>
-											<button onClick={() => removeUserPfofile(itemProfile._id!)}>Войти</button>
+											<button
+												onClick={() => removeUserPfofile(itemProfile._id!)}>
+												Войти
+											</button>
 										</div>
 									</>
 								)}

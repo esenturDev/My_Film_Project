@@ -1,7 +1,11 @@
-import scss from './HomePages.module.scss';
+import Section1 from "./section1/Section1";
+import { Section2 } from "./section2/Section2";
 
 export const HomePages = () => {
-  return (
-    <div>HomePages</div>
-  )
-}
+	return (
+		<>
+			<Section1 />
+			<Section2 />
+		</>
+	);
+};
