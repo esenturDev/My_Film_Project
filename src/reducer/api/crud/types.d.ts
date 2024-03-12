@@ -10,6 +10,16 @@ export namespace FilmProject {
     freeOfCharge: string;
   }[];
 
+  type GetIdFilmProjectRequest = void;
+  type GetIdFilmProjectResponse = {
+    _id?: number;
+    img: string;
+    iframe: string;
+    title: string;
+    nameg: string;
+    freeOfCharge: string;
+  }[];
+
   type PostFilmProjectRequest = {
     _id?: number;
     img: string;
